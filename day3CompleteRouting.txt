@@ -1,14 +1,43 @@
-Day3 Network Engineer
+Day3 Network Engineer: Job Interview Question for L1/L2 NOC-MSP positions
 3.1 Interpret the components of routing table
-3.1.a Routing protocol code
-3.1.b Prefix
-3.1.c Network mask
-3.1.d Next hop
-3.1.e Administrative distance
-3.1.f Metric
-3.1.g Gateway of last resort
+	A routing table is a database/fib: forward information base that is used by routing device to go to remote networks:
+	Path to take
+	linux: netstat -rn
+	windows: route print
+	cisco: show ip route
 
-3.2 Determine how a router makes a forwarding decision by default
+3.1.a Routing protocol code: Exclusive on Cisco, Juniper, Palo Alto, Fortinet
+	Mr. Bodds = MPLS, RIP, BGP, OSPF. D(EIGRP), Default Route,  Static Route
+
+3.1.b Prefix: A network Prefix is a Network Route:
+	show ip route connected | inc c
+	
+3.1.c Network mask: Is a portion of the ip address that separates the Host and Network ID:
+	The IP address of a PC is: 192.168.10.101/27, What is the Network Address? 192.168.10.96/27
+	The IP address of a PC is: 192.168.10.55/28, What is the Network Address? 192.168.10.48/28
+
+3.1.d Next hop: Is the IP address of an Ingress  router:
+	c:\tracert www.x-art.com
+
+3.1.e Administrative distance: BUMBAY na Interviewer: 
+	BGP: 20e, 200i
+	RIP: 120
+	EIGRP: 90
+	OSPF: 110
+	ISIS: 115
+	Static Route: 1
+
+3.1.f Metric: Used in routing for Cost and Distance: "How Much"
+	OSPF: Bandwidth
+	RIP: Hopcount
+	EIGRP: BW+Delay
+	BGP: Path Attribute
+
+3.1.g Gateway of last resort: aka "Default Gateway" is a catch all Route for unknown Networks 
+				parang: GMG: "google mo gago", if NONE: no internet
+				
+3.2 Determine how a router makes a forwarding decision by default:
+
 3.2.a Longest prefix match
 3.2.b Administrative distance
 3.2.c Routing protocol metric
@@ -111,10 +140,10 @@ config t
 int e0/0
  ip add 10.2.1.101 255.255.255.0
  no shut
-P1: Creating Floating STATIC routes on p1 for vlan 200 and vlan 20:
+P1: Creating STATIC routes USING LONGEST PREFIX on p1 for vlan 200 and vlan 20:
 config t
 ip route  192.168.1.128 255.255.255.224 10.2.1.1 1
-ip route  192.168.1.130 255.255.255.255 10.2.1.2 10
+ip route  192.168.1.130 255.255.255.255 10.2.1.2 
 ! /32 is better than /27: longest prefix Rule.
 do sh ip route static
 p2:
