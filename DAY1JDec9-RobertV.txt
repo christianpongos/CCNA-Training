@@ -608,7 +608,7 @@ conf t
   max-dn 12
   max-pool 12
   authenticate register
-  create profile sync
+  create profile syncinfo.xml
  voice register dn 1
    number 4107
    allow watch
@@ -619,17 +619,17 @@ conf t
    name 1245
 !
   voice register pool 1
-    id mac fe80.c677.e18d
+    id mac 9a7c.5302.befd
     number 1 dn 1
     dtmf-relay sip-notify
     username 4107 password 4107
     codec g711ulaw
 !
   voice register pool 2
-    id mac 1826.5432.5ced
+    id mac b405.a1a7.6282
     number 1 dn 2
     dtmf-relay sip-notify
-    username 1245 password 1245
+    username 4145 password 4145
     codec g711ulaw
 !
 *******call other countries!!!********
